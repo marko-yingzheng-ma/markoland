@@ -1,13 +1,14 @@
-import { Center, useTexture, useGLTF, OrbitControls } from '@react-three/drei';
+
+import { Physics } from "@react-three/rapier";
+import { MainScene } from "./models/MainScene";
+import { Avatar } from "./models/Avatar";
 
 function App() {
   return (
-    <>
-      <OrbitControls makeDefault />
-      <Center>
-
-      </Center>
-    </>
+    <Physics colliders={false} debug>
+      <MainScene />
+      <Avatar />
+    </Physics>
   )
 }
 
