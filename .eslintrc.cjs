@@ -17,5 +17,6 @@ module.exports = {
       { allowConstantExport: true },
     ],
     "react/no-unknown-property": ["off", { "ignore": ["JSX"] }],
+    "react/prop-types": 0
   },
 }
