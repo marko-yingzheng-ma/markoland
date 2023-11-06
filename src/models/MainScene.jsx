@@ -32,17 +32,15 @@ export function MainScene({
   resumeTexture.flipY = false;
 
   const { controls, camera } = useThree()
-  const updateHomeBase = useGameStore((state) => state.updateHomeBase)
-  updateHomeBase(nodes.m_chair.position);
 
   const chairRef = useRef()
 
-  useEffect(() => {
-    if (controls && camera) {
-      camera.position.set(nodes.m_chair.position.x - 12.0, nodes.m_chair.position.y + 6.0, nodes.m_chair.position.z - 12.0)
-      controls.target.set(nodes.m_chair.position.x + 15.0, nodes.m_chair.position.y, nodes.m_chair.position.z + 10.0)
-    }
-  }, [controls, camera])
+  // useEffect(() => {
+  //   if (controls && camera) {
+  //     camera.position.set(nodes.m_chair.position.x - 12.0, nodes.m_chair.position.y + 6.0, nodes.m_chair.position.z - 12.0)
+  //     controls.target.set(nodes.m_chair.position.x + 15.0, nodes.m_chair.position.y, nodes.m_chair.position.z + 10.0)
+  //   }
+  // }, [controls, camera])
 
   useEffect(() => {
     if (isActive) {
@@ -52,7 +50,10 @@ export function MainScene({
 
   return (
     <group {...rest} dispose={null}>
-      <RigidBody colliders='trimesh' type="fixed">
+      <RigidBody
+        colliders='trimesh'
+        type="fixed"
+      >
         <mesh
           name="rocks"
           geometry={nodes.rocks.geometry}
