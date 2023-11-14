@@ -18,7 +18,7 @@ function App() {
 
 
   return (
-    <Physics colliders={false} debug>
+    <Physics colliders={false}>
       <Environment
         background
         map={environmentMapTexture}

@@ -35,13 +35,6 @@ export function MainScene({
 
   const chairRef = useRef()
 
-  // useEffect(() => {
-  //   if (controls && camera) {
-  //     camera.position.set(nodes.m_chair.position.x - 12.0, nodes.m_chair.position.y + 6.0, nodes.m_chair.position.z - 12.0)
-  //     controls.target.set(nodes.m_chair.position.x + 15.0, nodes.m_chair.position.y, nodes.m_chair.position.z + 10.0)
-  //   }
-  // }, [controls, camera])
-
   useEffect(() => {
     if (isActive) {
 
@@ -50,6 +43,24 @@ export function MainScene({
 
   return (
     <group {...rest} dispose={null}>
+      <mesh
+        name="settings"
+        geometry={nodes.settings.geometry}
+        position={nodes.settings.position}
+        rotation={nodes.settings.rotation}
+      >
+        <meshBasicMaterial map={settingsTexture} />
+      </mesh>
+
+      <mesh
+        name="bricks"
+        geometry={nodes.bricks.geometry}
+        position={nodes.bricks.position}
+        rotation={nodes.bricks.rotation}
+      >
+        <meshBasicMaterial map={rocksTexture} />
+      </mesh>
+
       <RigidBody
         colliders='trimesh'
         type="fixed"
@@ -78,18 +89,9 @@ export function MainScene({
         >
           <meshBasicMaterial map={furnituresTexture} />
         </mesh>
-
-        <mesh
-          name="settings"
-          geometry={nodes.settings.geometry}
-          position={nodes.settings.position}
-          rotation={nodes.settings.rotation}
-        >
-          <meshBasicMaterial map={settingsTexture} />
-        </mesh>
       </RigidBody>
 
-      <RigidBody colliders='cuboid' type="fixed">
+      <RigidBody colliders='trimesh' type="fixed">
         <mesh
           name="m_project_diglette"
           geometry={nodes.m_project_diglette.geometry}

@@ -22,4 +22,10 @@ const Controls = {
   },
 }
 
-export { Controls }
+const AnimationAction = {
+  walk: 'walk',
+  standing_idle: 'standing idle',
+  jump: 'jump'
+}
+
+export { Controls, AnimationAction }
