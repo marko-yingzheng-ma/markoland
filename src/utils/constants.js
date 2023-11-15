@@ -25,7 +25,9 @@ const Controls = {
 const AnimationAction = {
   walk: 'walk',
   standing_idle: 'standing idle',
-  jump: 'jump'
+  jump: 'jump',
+  typing: 'typing',
+  type_to_stand: 'type_to_stand'
 }
 
 export { Controls, AnimationAction }
