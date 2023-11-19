@@ -57,7 +57,6 @@ export function Avatar({
 
     if (currentAction === AnimationAction.type_to_stand) {
       animationFinished = () => {
-        // TODO: Animate camera
         const bodyPosition = body.current.translation()
         const bodyRotation = body.current.rotation()
 
@@ -126,11 +125,8 @@ export function Avatar({
     const keysPressed = getKeysPressed()
 
     if (isActive && isInteractionReady) {
-      if (body.current) {
-        updateCameraControls(body.current.translation(), body.current.rotation(), delta)
-      }
-
       updateAvatarMovement(keysPressed, delta)
+      updateCameraControls(body.current.translation(), body.current.rotation(), delta)
     }
   })
 
@@ -152,13 +148,17 @@ export function Avatar({
     const idealOffSet = calculateIdealOffSet(bodyPosition, bodyRotation)
     const idealLookAt = calculateIdealLookAt(bodyPosition, bodyRotation)
 
+    const t = 1.0 - Math.pow(0.001, delta)
+    currentCameraPosition.current.lerp(idealOffSet, t)
+    currentCameraLookAt.current.lerp(idealLookAt, t)
+
     gsap.to(camera.position, {
       duration: delta,
-      x: idealOffSet.x,
-      y: idealOffSet.y,
-      z: idealOffSet.z,
+      x: currentCameraPosition.current.x,
+      y: currentCameraPosition.current.y,
+      z: currentCameraPosition.current.z,
       onUpdate: () => {
-        controls.target.copy(idealLookAt)
+        controls.target.copy(currentCameraLookAt.current)
       }
     })
   }
@@ -173,7 +173,7 @@ export function Avatar({
     camera.getWorldDirection(walkDirection)
     walkDirection.y = 0
     walkDirection.normalize()
-    const impluseStrength = 8.0 * delta
+    const impluseStrength = 10.0 * delta
     const impulse = new THREE.Vector3(impluseStrength * walkDirection.x, 0, impluseStrength * walkDirection.z)
 
     if (forward) {
@@ -184,7 +184,7 @@ export function Avatar({
 
     // rotation
     let avatarRotation = quat(body.current.rotation())
-    let rotationStrength = 0.4 * delta
+    let rotationStrength = 0.5 * delta
 
     if (left) {
       let quartenionRotation = new THREE.Quaternion().setFromAxisAngle(axisYOfRotation, Math.PI * rotationStrength)
