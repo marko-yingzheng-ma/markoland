@@ -1,0 +1,127 @@
+import { Text3D } from '@react-three/drei'
+import { useFrame } from '@react-three/fiber'
+import { Flex, Box } from '@react-three/flex'
+import { useEffect, useRef } from 'react'
+import * as THREE from 'three'
+import { splitStringIntoLines } from '../utils/helpers'
+
+const textMaterial = new THREE.MeshNormalMaterial()
+
+const axesX = new THREE.Vector3(1, 0, 0)
+const axesY = new THREE.Vector3(0, 1, 0)
+
+const xRotation = new THREE.Quaternion().setFromAxisAngle(axesX, -Math.PI / 2)
+const yRotation = new THREE.Quaternion().setFromAxisAngle(axesY, -Math.PI / 2)
+yRotation.multiply(xRotation)
+
+
+function Text({ children, ...rest }) {
+  return <Text3D
+    font="./fonts/M_PLUS_Code_Latin_Regular.json"
+    material={textMaterial}
+    quaternion={yRotation}
+    {...rest}
+  >
+    {children}
+  </Text3D>
+}
+
+function TextContent({
+  lines = [],
+  ...rest
+}) {
+
+  return <Box
+    justifyContent='flex-start'
+    alignItems='center'
+    flexDirection='row-reverse'
+    plane="xz"
+    marginRight={1}
+    marginLeft={1}
+    {...rest}
+  >
+    {
+      lines.map((line, index) => (
+        <Box key={index} centerAnchor >
+          <Text>{line}</Text>
+        </Box>
+      ))
+    }
+  </Box>
+}
+
+function TextSection({
+  title = "",
+  subtitle1 = '',
+  subtitle2 = '',
+  sectionContents = []
+}) {
+
+  return <>
+    {title &&
+      <Box centerAnchor marginRight={2}>
+        <Text position-y={0.5}>{title}</Text>
+      </Box>
+    }
+
+    {subtitle1 &&
+      <Box centerAnchor marginRight={1}>
+        <Text>{subtitle1}</Text>
+      </Box>
+    }
+
+    {subtitle2 &&
+      <Box centerAnchor>
+        <Text>{subtitle2}</Text>
+      </Box>
+    }
+
+    {
+      sectionContents.map((sectionContent, index) => {
+        return <TextContent key={index} lines={splitStringIntoLines(sectionContent.content, 50)} />
+      })
+    }
+
+  </>
+}
+
+function TextPage({
+  isActive = false,
+  sections = [],
+  ...rest
+}) {
+  const pageRef = useRef()
+
+  useFrame((_, delta) => {
+    if (isActive) {
+      pageRef.current.position.x += 1.5 * delta
+    }
+  })
+
+  useEffect(() => {
+
+  }, [isActive])
+
+  return <Flex
+    ref={pageRef}
+    justifyContent='flex-start'
+    alignItems='center'
+    flexDirection='row-reverse'
+    plane="xz"
+    {...rest}
+  >
+    {
+      sections.map((section, index) => (
+        <TextSection
+          key={index}
+          title={section.title}
+          subtitle1={section.subtitle1}
+          subtitle2={section.subtitle2}
+          sectionContents={section.sectionContent}
+        />
+      ))
+    }
+  </Flex>
+}
+
+export default TextPage

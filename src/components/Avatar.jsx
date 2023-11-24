@@ -114,6 +114,11 @@ export function Avatar({
         bodyPosition.z
       )
 
+      // const cameraPosition = new THREE.Vector3(
+      //   100, 80, 0
+      // )
+      // const target = new THREE.Vector3(100, 0, 0)
+
       camera.position.copy(cameraPosition)
       controls.target.copy(target)
 

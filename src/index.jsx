@@ -30,9 +30,9 @@ ReactDOM.createRoot(document.getElementById('root')).render(
           }}
         >
           <color args={['#030202']} attach="background" />
-          <OrbitControls makeDefault enablePan={false} />
+          <OrbitControls makeDefault enablePan={true} />
           <Perf position="top-left" />
-          {/* <axesHelper args={[100]} /> */}
+          <axesHelper args={[200]} />
           <App />
         </Canvas>
       </Suspense>
