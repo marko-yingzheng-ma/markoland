@@ -11,6 +11,8 @@ import { RigidBody, quat } from "@react-three/rapier";
 import { Controls, AnimationAction } from '../utils/constants';
 import * as THREE from "three";
 import gsap from "gsap";
+import { models } from '@/assets/index.js'
+import { useGameStore } from "@/stores/useGameStore";
 
 /**
  * 
@@ -27,7 +29,6 @@ import gsap from "gsap";
     walk
  */
 export function Avatar({
-  isActive,
   getKeysPressed
 }) {
   const group = useRef();
@@ -36,9 +37,12 @@ export function Avatar({
   const currentCameraLookAt = useRef(new THREE.Vector3())
   const isOnTheGround = useRef(true)
 
+  const isActive = useGameStore((state) => state.isActive)
+  const isInteractionReady = useGameStore((state) => state.isInteractionReady)
+  const toggleInteraction = useGameStore((state) => state.toggleInteraction)
+
   const [currentAction, setCurrentAction] = useState(AnimationAction.typing)
-  const [isInteractionReady, setIsInteractionReady] = useState(false)
-  const { nodes, materials, animations } = useGLTF("/model/avatar.glb");
+  const { nodes, materials, animations } = useGLTF(models.avatar);
   const { actions, mixer } = useAnimations(animations, group);
 
   const { controls, camera } = useThree()
@@ -76,7 +80,7 @@ export function Avatar({
             controls.target.copy(idealLookAt)
           },
           onComplete: () => {
-            setIsInteractionReady(true)
+            toggleInteraction()
           }
         })
       }
@@ -143,7 +147,7 @@ export function Avatar({
   }
 
   const calculateIdealOffSet = (bodyPosition, bodyRotation) => {
-    const idealOffSet = new THREE.Vector3(0, 3, -5)
+    const idealOffSet = new THREE.Vector3(0, 3, -4)
     idealOffSet.applyQuaternion(bodyRotation)
     idealOffSet.add(bodyPosition)
     return idealOffSet
@@ -269,4 +273,4 @@ export function Avatar({
   );
 }
 
-useGLTF.preload("/model/avatar.glb");
+useGLTF.preload(models.avatar);

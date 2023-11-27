@@ -4,6 +4,7 @@ import { Flex, Box } from '@react-three/flex'
 import { useEffect, useRef } from 'react'
 import * as THREE from 'three'
 import { splitStringIntoLines } from '../utils/helpers'
+import { fonts } from '@/assets';
 
 const textMaterial = new THREE.MeshNormalMaterial()
 
@@ -17,7 +18,7 @@ yRotation.multiply(xRotation)
 
 function Text({ children, ...rest }) {
   return <Text3D
-    font="./fonts/M_PLUS_Code_Latin_Regular.json"
+    font={fonts.resumeFont}
     material={textMaterial}
     quaternion={yRotation}
     {...rest}
@@ -86,8 +87,9 @@ function TextSection({
 }
 
 function TextPage({
-  isActive = false,
-  sections = [],
+  isActive,
+  defaultPosition,
+  sections,
   ...rest
 }) {
   const pageRef = useRef()
@@ -99,8 +101,11 @@ function TextPage({
   })
 
   useEffect(() => {
-
-  }, [isActive])
+    if (!isActive) {
+      const [x, y, z] = defaultPosition;
+      pageRef.current.position.set(x, y, z);
+    }
+  }, [isActive, defaultPosition])
 
   return <Flex
     ref={pageRef}
@@ -111,7 +116,7 @@ function TextPage({
     {...rest}
   >
     {
-      sections.map((section, index) => (
+      sections && sections.map((section, index) => (
         <TextSection
           key={index}
           title={section.title}

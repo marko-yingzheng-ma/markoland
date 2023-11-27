@@ -1,11 +1,15 @@
-import { Vector3 } from 'three'
 import { create } from 'zustand'
 import { subscribeWithSelector } from 'zustand/middleware'
 
-const useGameStore = create(
-  subscribeWithSelector((set) => ({
-    isActive: false,
+const initialState = {
+  isActive: false,
+  isInteractionReady: false,
+  activeResumeSection: ''
+}
 
+const useGameStore = create(
+  subscribeWithSelector((set, get) => ({
+    ...initialState,
     activate: () => {
       set((state) => {
         if (!state.isActive) {
@@ -14,6 +18,26 @@ const useGameStore = create(
 
         return {}
       })
+    },
+
+    toggleInteraction: () => {
+      set((state) => {
+        return { isInteractionReady: !state.isInteractionReady }
+      })
+    },
+
+    activateResume: (activeSection) => {
+      get().toggleInteraction()
+
+      set(() => {
+        return { activeResumeSection: activeSection }
+      })
+    },
+
+    resetResume: () => {
+      get().toggleInteraction()
+
+      set(() => ({ activeResumeSections: null }))
     }
   }))
 )

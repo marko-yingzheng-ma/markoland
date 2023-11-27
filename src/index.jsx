@@ -7,19 +7,20 @@ import { Suspense } from 'react';
 import { KeyboardControls, OrbitControls } from '@react-three/drei'
 import { Controls } from './utils/constants';
 import { Perf } from 'r3f-perf'
+import { Loader } from './Loader.jsx'
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
-    <KeyboardControls
-      map={[
-        { name: Controls.forward.name, keys: Controls.forward.keys },
-        { name: Controls.back.name, keys: Controls.back.keys },
-        { name: Controls.left.name, keys: Controls.left.keys },
-        { name: Controls.right.name, keys: Controls.right.keys },
-        { name: Controls.jump.name, keys: Controls.jump.keys },
-      ]}
-    >
-      <Suspense fallback={<h1>Loading...</h1>}>
+    <Suspense fallback={<Loader />}>
+      <KeyboardControls
+        map={[
+          { name: Controls.forward.name, keys: Controls.forward.keys },
+          { name: Controls.back.name, keys: Controls.back.keys },
+          { name: Controls.left.name, keys: Controls.left.keys },
+          { name: Controls.right.name, keys: Controls.right.keys },
+          { name: Controls.jump.name, keys: Controls.jump.keys },
+        ]}
+      >
         <Canvas
           flat
           camera={{
@@ -30,12 +31,12 @@ ReactDOM.createRoot(document.getElementById('root')).render(
           }}
         >
           <color args={['#030202']} attach="background" />
-          <OrbitControls makeDefault enablePan={true} />
+          <OrbitControls makeDefault />
           <Perf position="top-left" />
           <axesHelper args={[200]} />
           <App />
         </Canvas>
-      </Suspense>
-    </KeyboardControls>
+      </KeyboardControls>
+    </Suspense>
   </React.StrictMode >,
 )
