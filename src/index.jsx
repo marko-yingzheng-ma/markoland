@@ -8,6 +8,7 @@ import { KeyboardControls, OrbitControls } from '@react-three/drei'
 import { Controls } from './utils/constants';
 import { Perf } from 'r3f-perf'
 import { Loader } from './Loader.jsx'
+import { Interface } from './components'
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
@@ -30,12 +31,13 @@ ReactDOM.createRoot(document.getElementById('root')).render(
             zoom: 1
           }}
         >
-          <color args={['#030202']} attach="background" />
+          <color args={['#48AB6E']} attach="background" />
           <OrbitControls makeDefault />
-          <Perf position="top-left" />
+          <Perf position="bottom-right" />
           <axesHelper args={[200]} />
           <App />
         </Canvas>
+        <Interface />
       </KeyboardControls>
     </Suspense>
   </React.StrictMode >,

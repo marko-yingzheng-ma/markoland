@@ -1,0 +1,15 @@
+line {
+  stroke-width: 10px;
+  stroke-linecap: round;
+  fill: transparent;
+}
+
+.closeBtn {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.closeBtn:hover {
+  cursor: pointer;
+}

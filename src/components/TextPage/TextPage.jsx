@@ -3,7 +3,7 @@ import { useFrame } from '@react-three/fiber'
 import { Flex, Box } from '@react-three/flex'
 import { useEffect, useRef } from 'react'
 import * as THREE from 'three'
-import { splitStringIntoLines } from '../utils/helpers'
+import { splitStringIntoLines } from '@/utils/helpers'
 import { fonts } from '@/assets';
 
 const textMaterial = new THREE.MeshNormalMaterial()
@@ -43,7 +43,7 @@ function TextContent({
   >
     {
       lines.map((line, index) => (
-        <Box key={index} centerAnchor >
+        <Box key={index} centerAnchor margin={0.2}>
           <Text>{line}</Text>
         </Box>
       ))
@@ -55,6 +55,7 @@ function TextSection({
   title = "",
   subtitle1 = '',
   subtitle2 = '',
+  subtitle3 = '',
   sectionContents = []
 }) {
 
@@ -72,14 +73,20 @@ function TextSection({
     }
 
     {subtitle2 &&
-      <Box centerAnchor>
+      <Box centerAnchor marginRight={0.5}>
         <Text>{subtitle2}</Text>
+      </Box>
+    }
+
+    {subtitle3 &&
+      <Box centerAnchor marginRight={0.5} marginLeft={0.5}>
+        <Text>{subtitle3}</Text>
       </Box>
     }
 
     {
       sectionContents.map((sectionContent, index) => {
-        return <TextContent key={index} lines={splitStringIntoLines(sectionContent.content, 50)} />
+        return <TextContent key={index} lines={splitStringIntoLines(sectionContent.content, 35)} />
       })
     }
 
@@ -96,7 +103,7 @@ function TextPage({
 
   useFrame((_, delta) => {
     if (isActive) {
-      pageRef.current.position.x += 1.5 * delta
+      pageRef.current.position.x += 1.2 * delta
     }
   })
 
@@ -122,6 +129,7 @@ function TextPage({
           title={section.title}
           subtitle1={section.subtitle1}
           subtitle2={section.subtitle2}
+          subtitle3={section.subtitle3}
           sectionContents={section.sectionContent}
         />
       ))
@@ -129,4 +137,4 @@ function TextPage({
   </Flex>
 }
 
-export default TextPage
+export { TextPage }

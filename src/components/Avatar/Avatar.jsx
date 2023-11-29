@@ -8,7 +8,7 @@ import { useEffect, useRef, useState } from "react";
 import { useGLTF, useAnimations } from "@react-three/drei";
 import { useFrame, useThree } from "@react-three/fiber";
 import { RigidBody, quat } from "@react-three/rapier";
-import { Controls, AnimationAction } from '../utils/constants';
+import { Controls, AnimationAction } from '@/utils/constants';
 import * as THREE from "three";
 import gsap from "gsap";
 import { models } from '@/assets/index.js'

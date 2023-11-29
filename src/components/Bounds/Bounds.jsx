@@ -35,4 +35,4 @@ function Bounds() {
   </>
 }
 
-export default Bounds;
+export { Bounds }

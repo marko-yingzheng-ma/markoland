@@ -44,6 +44,7 @@ const ResumeSections = {
       'ABOUT',
       null,
       null,
+      null,
       [
         new ResumeContent(
           'A self-reliant Full Stack Software Engineer who takes ownership of projects, I am committed to continuous learning and adept at resolving complex problems. With over 5 years of experience in full stack web and mobile development.'
@@ -54,8 +55,9 @@ const ResumeSections = {
   [ResumeSectionNames.WORK]: [
     new ResumeSection(
       'WORK',
-      'Full Stack Software Engineer, Mar 2018 — Sep 2022',
-      'Ford Greenfield Labs, Ford Motor Company Palo Alto, CA',
+      'Full Stack Software Engineer',
+      'Ford Greenfield Labs, Ford Motor Company',
+      'Palo Alto, CA, Mar 2018 — Sep 2022',
       [
         new ResumeContent(
           '• Led the end-to-end architecture, development, and deployment of a highly scalable React Single Page Application (SPA) utilizing Node.js, resulting in a successful MVPs that is now widely adopted by thousands of employees as a go-to project repository.'
@@ -79,8 +81,9 @@ const ResumeSections = {
     ),
     new ResumeSection(
       null,
-      'Android Engineer Internship Sep 2017 — Dec 2017',
-      'SMount Health Tech San Jose, CA',
+      'Android Engineer Internship',
+      'SMount Health Tech',
+      'San Jose, CA, Sep 2017 — Dec 2017',
       [
         new ResumeContent(
           '• Architected a decentralized mobile health Android application for caregivers to keep track of patients’ health status in real - time while keeping data distributed across all devices.'
@@ -94,6 +97,7 @@ const ResumeSections = {
   [ResumeSectionNames.SKILLS]: [
     new ResumeSection(
       'SKILLS',
+      null,
       null,
       null,
       [
@@ -122,8 +126,9 @@ const ResumeSections = {
   [ResumeSectionNames.EDUCATION]: [
     new ResumeSection(
       'EDUCATION',
-      'Drury University, Aug 2015 — Aug 2017',
+      'Drury University',
       'Bachelor of Science, Software Engineering',
+      'Aug 2015 — Aug 2017',
       [
         new ResumeContent(
           '• GPA 3.72/4.0'
@@ -132,8 +137,9 @@ const ResumeSections = {
     ),
     new ResumeSection(
       null,
-      'The Ohio State University, Aug 2012 — May 2015',
+      'The Ohio State University',
       'Bachelor of Science, Computer Science',
+      'Aug 2012 — May 2015',
       [
         new ResumeContent(
           '• GPA 3.5/4.0 (Transferred)'

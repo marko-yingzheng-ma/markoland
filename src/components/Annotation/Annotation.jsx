@@ -1,4 +1,5 @@
 import { Html } from "@react-three/drei"
+import './Annotation.css';
 
 function Annotation({ title, onClick, ...props }) {
   const onUserClicked = () => {

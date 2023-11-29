@@ -6,10 +6,10 @@ import { useGLTF, useTexture } from "@react-three/drei";
 import { CuboidCollider, RigidBody } from "@react-three/rapier";
 import { useEffect, useRef } from "react";
 import gsap from 'gsap';
-import { Annotation } from "./Annotation";
+import { Annotation } from "../Annotation";
 import { models, textures } from '@/assets/index.js';
 import { useGameStore } from "@/stores/useGameStore";
-import { ResumeSectionNames } from '../utils/constants';
+import { ResumeSectionNames } from '../../utils/constants';
 
 export function MainScene({
   onDigletteClicked,
@@ -37,7 +37,6 @@ export function MainScene({
   const isActive = useGameStore((state) => state.isActive)
   const isInteractionReady = useGameStore((state) => state.isInteractionReady)
 
-  console.log(isInteractionReady);
   useEffect(() => {
     if (isActive) {
       gsap.to(chairRef.current.position, {
