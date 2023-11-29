@@ -1,7 +1,7 @@
 
 import { Physics } from "@react-three/rapier";
 import { Avatar, MainScene, Bounds, TextPage } from "./components";
-import { Environment, useKeyboardControls, useTexture } from "@react-three/drei";
+import { Environment, OrbitControls, useKeyboardControls, useTexture } from "@react-three/drei";
 import * as THREE from 'three'
 import { useGameStore } from "./stores/useGameStore";
 import { useFrame, useThree } from "@react-three/fiber";
@@ -36,28 +36,40 @@ function App() {
 
   })
 
+  const moveCameraTo = async (position, lookAt) => {
+    const controlsAnimation = gsap.to(controls.target, {
+      duration: 4.0,
+      ease: 'expo.out',
+      x: lookAt.x,
+      y: lookAt.y,
+      z: lookAt.z,
+    });
+
+    const cameraAnimation = gsap.to(camera.position, {
+      duration: 4.0,
+      ease: 'expo.out',
+      x: position.x,
+      y: position.y,
+      z: position.z,
+    });
+
+    return Promise.all([controlsAnimation, cameraAnimation])
+  }
+
   const onDigletteClicked = (sectionName) => {
+    const startingPosition = camera.position.clone();
+    const startingLookAt = controls.target.clone();
 
     const observationPosition = new THREE.Vector3(20, 13.7, -2.3)
     const observationLookAt = new THREE.Vector3(65, -1.1, -2.5)
 
-    gsap.to(controls.target, {
-      duration: 4.0,
-      ease: 'expo.out',
-      x: observationLookAt.x,
-      y: observationLookAt.y,
-      z: observationLookAt.z,
-    })
+    moveCameraTo(observationPosition, observationLookAt)
 
-    gsap.to(camera.position, {
-      duration: 4.0,
-      ease: 'expo.out',
-      x: observationPosition.x,
-      y: observationPosition.y,
-      z: observationPosition.z
+    activateResume(sectionName, () => {
+      moveCameraTo(startingPosition, startingLookAt).then(() => {
+        resetResume()
+      })
     })
-
-    activateResume(sectionName)
   }
 
   return (

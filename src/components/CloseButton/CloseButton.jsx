@@ -1,6 +1,5 @@
-import { Html } from "@react-three/drei"
 import { motion } from "framer-motion";
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import './CloseButton.css'
 
 const draw = {
@@ -9,7 +8,7 @@ const draw = {
     opacity: 0
   },
   visible: (i) => {
-    const delay = 1 + i * 0.5;
+    const delay = 1 + i * 1.5;
     return {
       pathLength: 1,
       opacity: 1,
@@ -21,52 +20,56 @@ const draw = {
   }
 };
 
-function CloseButton({ title, onClick }) {
+function CloseButton({ label, onClick }) {
+  const size = 40;
   const [visibility, setVisibility] = useState('visible')
+  const [isHovering, setIsHovering] = useState(false)
 
   return (
-    <Html fullscreen>
-      {/* <motion.svg
-        className='closeBotton'
-        width="50"
-        height="50"
-        viewBox="0 0 50 50"
+    <div className='closeBotton__container'>
+      <motion.svg
+        width={size}
+        height={size}
+        viewBox={`0 0 ${size} ${size}`}
         whileHover={{
           scale: 1.2,
           transition: { type: "spring", stiffness: 400, damping: 15 }
         }}
         whileTap={{ scale: 0.9 }}
+        onHoverStart={() => setIsHovering(true)}
+        onHoverEnd={() => setIsHovering(false)}
         initial="hidden"
         animate={visibility}
         onTap={() => {
           setVisibility('hidden')
-          // onClick()
+          setTimeout(() => {
+            onClick()
+          }, 500);
         }}
       >
 
         <motion.line
           x1="0"
           y1="0"
-          x2="50"
-          y2="50"
-          stroke="#80c9e8"
+          x2={size}
+          y2={size}
+          stroke='#903482'
           variants={draw}
           custom={2}
         />
         <motion.line
-          x1="50"
+          x1={size}
           y1="0"
           x2="0"
-          y2="50"
-          stroke="#ee619e"
+          y2={size}
+          stroke='#4d8baa'
           variants={draw}
           custom={2.5}
         />
-      </motion.svg> */}
-      <div className="closeBtn">
-        yooooo
-      </div>
-    </Html>
+      </motion.svg>
+      <div className={`closeBotton__label ${isHovering ? 'isActive' : ''}`}>{label}</div>
+    </div>
+
   )
 }
 

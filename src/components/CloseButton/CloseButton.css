@@ -4,12 +4,27 @@ line {
   fill: transparent;
 }
 
-.closeBtn {
-  position: absolute;
-  top: 0;
-  left: 0;
+.closeBotton__container {
+  margin-top: 60px;
+  margin-left: 60px;
 }
 
-.closeBtn:hover {
+.closeBotton__container:hover {
   cursor: pointer;
+}
+
+.closeBotton__container svg {
+  outline: none;
+}
+
+.closeBotton__label {
+  margin-top: 5px;
+  margin-left: -5px;
+  letter-spacing: 1px;
+  opacity: 0;
+  transition: opacity 0.1s ease-in-out;
+}
+
+.closeBotton__label.isActive {
+  opacity: 1;
 }

@@ -40,8 +40,8 @@ export function MainScene({
   useEffect(() => {
     if (isActive) {
       gsap.to(chairRef.current.position, {
-        duration: 0.8,
-        ease: "expo.out",
+        duration: 0.2,
+        // ease: "expo.out",
         x: "-=0.8"
       })
     }

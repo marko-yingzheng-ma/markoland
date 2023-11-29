@@ -123,8 +123,8 @@ export function Avatar({
       // )
       // const target = new THREE.Vector3(100, 0, 0)
 
-      camera.position.copy(cameraPosition)
-      controls.target.copy(target)
+      // camera.position.copy(cameraPosition)
+      // controls.target.copy(target)
 
     }
   }, [controls, camera])

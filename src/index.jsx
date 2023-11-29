@@ -7,12 +7,11 @@ import { Suspense } from 'react';
 import { KeyboardControls, OrbitControls } from '@react-three/drei'
 import { Controls } from './utils/constants';
 import { Perf } from 'r3f-perf'
-import { Loader } from './Loader.jsx'
-import { Interface } from './components'
+import { Interface, ProgressLoader } from './components'
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
-    <Suspense fallback={<Loader />}>
+    <Suspense fallback={<ProgressLoader />}>
       <KeyboardControls
         map={[
           { name: Controls.forward.name, keys: Controls.forward.keys },
@@ -28,13 +27,14 @@ ReactDOM.createRoot(document.getElementById('root')).render(
             fov: 50,
             near: 0.1,
             far: 500,
-            zoom: 1
+            zoom: 1,
+            position: [-10, 8.3, -21]
           }}
         >
           <color args={['#48AB6E']} attach="background" />
-          <OrbitControls makeDefault />
+          <OrbitControls makeDefault enableRotate={true} target={[2, 5, 0]} />
           <Perf position="bottom-right" />
-          <axesHelper args={[200]} />
+          {/* <axesHelper args={[200]} /> */}
           <App />
         </Canvas>
         <Interface />
