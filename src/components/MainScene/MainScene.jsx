@@ -106,12 +106,15 @@ export function MainScene({
         >
           <meshBasicMaterial map={resumeTexture} />
 
-          <Annotation
-            title={ResumeSectionNames.SKILLS}
-            onClick={onDigletteClicked}
-            position={[0, 2, 0]}
-            rotation={[0, Math.PI, 0]}
-          />
+          {isInteractionReady &&
+            <Annotation
+              title={ResumeSectionNames.SKILLS}
+              onClick={onDigletteClicked}
+              position={[0, 2, 0]}
+              rotation={[0, Math.PI, 0]}
+            />
+          }
+
         </mesh>
         <mesh
           name={ResumeSectionNames.ABOUT}
@@ -121,12 +124,15 @@ export function MainScene({
         >
           <meshBasicMaterial map={resumeTexture} />
 
-          <Annotation
-            title={ResumeSectionNames.ABOUT}
-            onClick={onDigletteClicked}
-            position={[0, 2, 0]}
-            rotation={[0, Math.PI, 0]}
-          />
+          {isInteractionReady &&
+            <Annotation
+              title={ResumeSectionNames.ABOUT}
+              onClick={onDigletteClicked}
+              position={[0, 2, 0]}
+              rotation={[0, Math.PI, 0]}
+            />
+          }
+
 
         </mesh>
         <mesh
@@ -137,12 +143,15 @@ export function MainScene({
         >
           <meshBasicMaterial map={resumeTexture} />
 
-          <Annotation
-            title={ResumeSectionNames.WORK}
-            onClick={onDigletteClicked}
-            position={[0, 2, 0]}
-            rotation={[0, Math.PI, 0]}
-          />
+          {isInteractionReady &&
+            <Annotation
+              title={ResumeSectionNames.WORK}
+              onClick={onDigletteClicked}
+              position={[0, 2, 0]}
+              rotation={[0, Math.PI, 0]}
+            />
+          }
+
 
         </mesh>
         <mesh
@@ -153,14 +162,15 @@ export function MainScene({
         >
           <meshBasicMaterial map={resumeTexture} />
 
-          <Annotation
-            title={ResumeSectionNames.EDUCATION}
-            onClick={onDigletteClicked}
-            position={[0, 2, 0]}
-            rotation={[0, Math.PI, 0]}
-          >
+          {isInteractionReady &&
+            <Annotation
+              title={ResumeSectionNames.EDUCATION}
+              onClick={onDigletteClicked}
+              position={[0, 2, 0]}
+              rotation={[0, Math.PI, 0]}
+            />
+          }
 
-          </Annotation>
         </mesh>
       </RigidBody>
 
