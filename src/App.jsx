@@ -36,9 +36,9 @@ function App() {
 
   })
 
-  const moveCameraTo = async (position, lookAt) => {
+  const moveCameraTo = async (duration, position, lookAt) => {
     const controlsAnimation = gsap.to(controls.target, {
-      duration: 4.0,
+      duration: duration,
       ease: 'expo.out',
       x: lookAt.x,
       y: lookAt.y,
@@ -46,7 +46,7 @@ function App() {
     });
 
     const cameraAnimation = gsap.to(camera.position, {
-      duration: 4.0,
+      duration: duration,
       ease: 'expo.out',
       x: position.x,
       y: position.y,
@@ -63,10 +63,10 @@ function App() {
     const observationPosition = new THREE.Vector3(20, 13.7, -2.3)
     const observationLookAt = new THREE.Vector3(65, -1.1, -2.5)
 
-    moveCameraTo(observationPosition, observationLookAt)
+    moveCameraTo(4.0, observationPosition, observationLookAt)
 
     activateResume(sectionName, () => {
-      moveCameraTo(startingPosition, startingLookAt).then(() => {
+      moveCameraTo(2.0, startingPosition, startingLookAt).then(() => {
         resetResume()
       })
     })
