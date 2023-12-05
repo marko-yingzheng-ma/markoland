@@ -1,4 +1,5 @@
-import environment from './environmentMaps/space.jpg';
+import environment from './images/space.jpg';
+import background from './images/background.gif';
 
 import resumeFont from './fonts/SyneMono-Regular.json';
 import appFont from './fonts/SyneMono-Regular.ttf';
@@ -13,8 +14,10 @@ import resumeTexture from './textures/resume.jpg';
 import rocksTexture from './textures/rocks.jpg';
 import settingsTexture from './textures/settings.jpg';
 
+
 const images = {
-  environment
+  environment,
+  background
 }
 
 const fonts = {
@@ -40,5 +43,5 @@ export {
   images,
   fonts,
   models,
-  textures
+  textures,
 }

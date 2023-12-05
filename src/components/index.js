@@ -6,3 +6,5 @@ export { Interface } from './Interface';
 export { MainScene } from './MainScene';
 export { TextPage } from './TextPage';
 export { ProgressLoader } from './ProgressLoader'
+export { LandingPage } from './LandingPage'
+export { AppButton } from './AppButton'
