@@ -1,0 +1,9 @@
+.interface__container {
+  position: fixed;
+  /* setting height to 100% make the container takes user pointer event and by default events such as 'click' get propagete to the scene but panning, scrolling, and etc do not. This disables user interaction with orbitcontrol but programmatic orbitcontrol update still work and that's exact what we need at the moment */
+  top: 0;
+  left: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+}

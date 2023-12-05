@@ -8,9 +8,11 @@ import { useEffect, useRef, useState } from "react";
 import { useGLTF, useAnimations } from "@react-three/drei";
 import { useFrame, useThree } from "@react-three/fiber";
 import { RigidBody, quat } from "@react-three/rapier";
-import { Controls, AnimationAction } from '../utils/constants';
+import { Controls, AnimationAction } from '@/utils/constants';
 import * as THREE from "three";
 import gsap from "gsap";
+import { models } from '@/assets/index.js'
+import { useGameStore } from "@/stores/useGameStore";
 
 /**
  * 
@@ -27,7 +29,6 @@ import gsap from "gsap";
     walk
  */
 export function Avatar({
-  isActive,
   getKeysPressed
 }) {
   const group = useRef();
@@ -36,9 +37,12 @@ export function Avatar({
   const currentCameraLookAt = useRef(new THREE.Vector3())
   const isOnTheGround = useRef(true)
 
+  const isActive = useGameStore((state) => state.isActive)
+  const isInteractionReady = useGameStore((state) => state.isInteractionReady)
+  const toggleInteraction = useGameStore((state) => state.toggleInteraction)
+
   const [currentAction, setCurrentAction] = useState(AnimationAction.typing)
-  const [isInteractionReady, setIsInteractionReady] = useState(false)
-  const { nodes, materials, animations } = useGLTF("/model/avatar.glb");
+  const { nodes, materials, animations } = useGLTF(models.avatar);
   const { actions, mixer } = useAnimations(animations, group);
 
   const { controls, camera } = useThree()
@@ -57,7 +61,6 @@ export function Avatar({
 
     if (currentAction === AnimationAction.type_to_stand) {
       animationFinished = () => {
-        // TODO: Animate camera
         const bodyPosition = body.current.translation()
         const bodyRotation = body.current.rotation()
 
@@ -77,7 +80,7 @@ export function Avatar({
             controls.target.copy(idealLookAt)
           },
           onComplete: () => {
-            setIsInteractionReady(true)
+            toggleInteraction()
           }
         })
       }
@@ -115,8 +118,13 @@ export function Avatar({
         bodyPosition.z
       )
 
-      camera.position.copy(cameraPosition)
-      controls.target.copy(target)
+      // const cameraPosition = new THREE.Vector3(
+      //   100, 80, 0
+      // )
+      // const target = new THREE.Vector3(100, 0, 0)
+
+      // camera.position.copy(cameraPosition)
+      // controls.target.copy(target)
 
     }
   }, [controls, camera])
@@ -126,11 +134,8 @@ export function Avatar({
     const keysPressed = getKeysPressed()
 
     if (isActive && isInteractionReady) {
-      if (body.current) {
-        updateCameraControls(body.current.translation(), body.current.rotation(), delta)
-      }
-
       updateAvatarMovement(keysPressed, delta)
+      updateCameraControls(body.current.translation(), body.current.rotation(), delta)
     }
   })
 
@@ -142,7 +147,7 @@ export function Avatar({
   }
 
   const calculateIdealOffSet = (bodyPosition, bodyRotation) => {
-    const idealOffSet = new THREE.Vector3(0, 3, -5)
+    const idealOffSet = new THREE.Vector3(0, 3, -4)
     idealOffSet.applyQuaternion(bodyRotation)
     idealOffSet.add(bodyPosition)
     return idealOffSet
@@ -152,13 +157,17 @@ export function Avatar({
     const idealOffSet = calculateIdealOffSet(bodyPosition, bodyRotation)
     const idealLookAt = calculateIdealLookAt(bodyPosition, bodyRotation)
 
+    const t = 1.0 - Math.pow(0.001, delta)
+    currentCameraPosition.current.lerp(idealOffSet, t)
+    currentCameraLookAt.current.lerp(idealLookAt, t)
+
     gsap.to(camera.position, {
       duration: delta,
-      x: idealOffSet.x,
-      y: idealOffSet.y,
-      z: idealOffSet.z,
+      x: currentCameraPosition.current.x,
+      y: currentCameraPosition.current.y,
+      z: currentCameraPosition.current.z,
       onUpdate: () => {
-        controls.target.copy(idealLookAt)
+        controls.target.copy(currentCameraLookAt.current)
       }
     })
   }
@@ -173,7 +182,7 @@ export function Avatar({
     camera.getWorldDirection(walkDirection)
     walkDirection.y = 0
     walkDirection.normalize()
-    const impluseStrength = 8.0 * delta
+    const impluseStrength = 10.0 * delta
     const impulse = new THREE.Vector3(impluseStrength * walkDirection.x, 0, impluseStrength * walkDirection.z)
 
     if (forward) {
@@ -184,7 +193,7 @@ export function Avatar({
 
     // rotation
     let avatarRotation = quat(body.current.rotation())
-    let rotationStrength = 0.4 * delta
+    let rotationStrength = 0.5 * delta
 
     if (left) {
       let quartenionRotation = new THREE.Quaternion().setFromAxisAngle(axisYOfRotation, Math.PI * rotationStrength)
@@ -264,4 +273,4 @@ export function Avatar({
   );
 }
 
-useGLTF.preload("/model/avatar.glb");
+useGLTF.preload(models.avatar);

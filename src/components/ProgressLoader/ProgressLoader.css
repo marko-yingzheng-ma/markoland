@@ -1,0 +1,23 @@
+.loadingBar__container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+
+.loadingBar {
+  height: 4px;
+  background: #ffffff;
+  width: inherit;
+  transform: scaleX(1);
+  transform-origin: left;
+  transition: transform 0.5s;
+  will-change: transform opacity;
+}
+
+.loadingBar.ended {
+  transform: scaleX(0);
+  transform-origin: initial;
+  transition: transform 1.5s ease-in-out;
+}

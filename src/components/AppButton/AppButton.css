@@ -1,0 +1,37 @@
+.appButton {
+  padding: 15px 25px;
+  border: none;
+  border-radius: 10px;
+  background-color: #f0f0f0;
+  /* Background color */
+  color: #888;
+  /* Text color */
+  font-size: 18px;
+  /* Font size */
+  font-family: inherit;
+  /* Font family */
+  text-transform: uppercase;
+  /* Convert text to uppercase */
+  cursor: pointer;
+  outline: none;
+  position: relative;
+  box-shadow:
+    0px 4px 10px #d3d3d3,
+    0px -4px 10px #ffffff;
+  /* Neumorphic box shadow */
+  transition: box-shadow 0.3s, color 0.3s;
+  /* Smooth transition */
+}
+
+.appButton:hover {
+  color: #555;
+  /* Text color on hover */
+  box-shadow:
+    0px 12px 20px #d3d3d3,
+    0px -12px 20px #ffffff,
+    /* Enhanced neumorphic shadow */
+    0 0 20px #6f1266,
+    /* Green glow on hover */
+    inset 0 0 10px #6f1266;
+  /* Inner green glow on hover */
+}

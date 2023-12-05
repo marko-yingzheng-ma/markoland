@@ -1,0 +1,30 @@
+line {
+  stroke-width: 10px;
+  stroke-linecap: round;
+  fill: transparent;
+}
+
+.closeBotton__container {
+  margin-top: 60px;
+  margin-left: 60px;
+}
+
+.closeBotton__container:hover {
+  cursor: pointer;
+}
+
+.closeBotton__container svg {
+  outline: none;
+}
+
+.closeBotton__label {
+  margin-top: 5px;
+  margin-left: -5px;
+  letter-spacing: 1px;
+  opacity: 0;
+  transition: opacity 0.1s ease-in-out;
+}
+
+.closeBotton__label.isActive {
+  opacity: 1;
+}
