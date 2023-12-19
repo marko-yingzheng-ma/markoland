@@ -1,4 +1,4 @@
-import { Resume, ResumeContent, ResumeSection } from '../models'
+import { ResumeContent, ResumeSection } from '../models'
 
 const Controls = {
   forward: {

@@ -7,6 +7,9 @@ line {
 .closeBotton__container {
   margin-top: 60px;
   margin-left: 60px;
+  width: fit-content;
+  height: fit-content;
+  pointer-events: auto;
 }
 
 .closeBotton__container:hover {
