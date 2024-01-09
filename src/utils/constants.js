@@ -47,7 +47,7 @@ const ResumeSections = {
       null,
       [
         new ResumeContent(
-          'A self-reliant Full Stack Software Engineer who takes ownership of projects, I am committed to continuous learning and adept at resolving complex problems. With over 5 years of experience in full stack web and mobile development.'
+          'Seasoned Full Stack Engineer with a robust 5-year track record in diverse technology domains, adeptly blending expertise in frontend web development using React, backend proficiency in Node.js, along with mastery in iOS Swift and Android Java/Kotlin. Demonstrated success in spearheading 15 Proof of Concepts (PoCs) and Minimum Viable Products (MVPs), coupled with hands-on involvement in large-scale system implementations. Recognized as a self-starter and quick learner, driven by an innate attention to detail, ensuring precision in all facets of development.'
         )
       ]
     ),
@@ -60,22 +60,22 @@ const ResumeSections = {
       'Palo Alto, CA, Mar 2018 — Sep 2022',
       [
         new ResumeContent(
-          '• Led the end-to-end architecture, development, and deployment of a highly scalable React Single Page Application (SPA) utilizing Node.js, resulting in a successful MVPs that is now widely adopted by thousands of employees as a go-to project repository.'
+          '• Led the engineering of a scalable web application repository using React and Node.js, seamlessly integrating Azure AD authentication, Elastic search, and GCP services, resulting in a highly successful MVP embraced by a vast user base of over 100,000 employees.'
         ),
         new ResumeContent(
-          '• Led a team of 3 developers in a collaborative effort with the Sync 4 (Ford new infotainment technology) team to test, benchmark, and debug gaming and productivity applications, resulting in the deployment of these applications on over 2,000,000 Ford vehicles.'
+          '• Led a team of 3 developers to test, benchmark, and debug gaming and productivity infotainment applica- tions, resulting in the deployment of these applications on over 2,000,000 Ford vehicles.'
         ),
         new ResumeContent(
-          '• Designed and implemented a cutting-edge, immersive multiplayer trivia game SPA using React.js and Node.js, integrated within the Sync 4 platform. Streamlined user experience by developing an embedded host app with a QR code scanning feature, enabling seamless participation for riders through a mobile web app. Resulted in increased engagement and enhanced social interaction among users.'
+          '• Engineered a synchronized multiplayer trivia game using React and Node. Integrated a voice-controlled host role within the vehicle’s HMI screen and a mobile-adaptive player role accessible via browsers. Estab- lished seamless communication between players and the host via socket connections, ensuring impeccable synchronization throughout gameplay.'
         ),
         new ResumeContent(
-          '• Developed an iOS driver application using Swift 4 as part of a First Mile, Last Mile MVP program, resulting in 22,875 fulfilled rides and an impressive average rating of 4.6/5.0.'
+          '• Developed an iOS driver application using Swift 4 as part of a First Mile, Last Mile MVP program, resulting in 22,875 fulfilled rides and an average rating of 4.6/5.0.'
         ),
         new ResumeContent(
-          '• Introduced and evangelized TDD with CI/CD Jenkins pipelines in dev team of 4, reducing deployment time by 95% from 1 hour to 5 minutes, and increasing deployment frequency from once per week to an average of 4 times a day.'
+          '• Introduced and evangelized TDD with CI/CD Jenkins pipelines in team of 6, reducing deployment time by 95% from 1 hour to 5 minutes, and increasing deployment frequency from once per week to an average of 4 times a day.'
         ),
         new ResumeContent(
-          '• Completed 15 diverse Proof Of Concepts (PoC) and Minimum Viable Products (MVP), including full stack Node.js and React.js, iOS (Swift, SwiftUI), and Android (Kotlin) applications, simultaneously managing an average of 2 projects at a time. Recognized as a ”top achiever,” an honor bestowed upon only 5% of employees.'
+          '• Executed 15 varied PoCs and MVPs across multiple tech stacks (Node.js, React.js, iOS, Android). Managed 2+ projects concurrently and earned the ”top achiever” distinction among just 5% of employees.'
         ),
       ]
     ),
@@ -102,7 +102,11 @@ const ResumeSections = {
       null,
       [
         new ResumeContent(
-          'Frontend - Web: JavaScript, TypeScript, React.js, Redux.js, HTML5/CSS3, UI/UX, Atomic Design'
+          'Frontend - Web: JavaScript, TypeScript, React.js, Redux.js, HTML5/CSS, UI/UX, Atomic Design'
+        ),
+
+        new ResumeContent(
+          'Frontend - Web 3D: three.js, WebGL, React Three Fiber/Drei, GLSL, Blender'
         ),
 
         new ResumeContent(
